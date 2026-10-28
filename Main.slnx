@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Core/" />
+  <Folder Name="/Core/App/" />
+  <Folder Name="/Core/Domain/" />
+  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Infrastructure/Infra/" />
+  <Folder Name="/Infrastructure/Presistance/" />
+  <Folder Name="/Presentation/">
+    <Project Path="Main.BlazorApp/Main.BlazorApp.csproj" />
+  </Folder>
+  <Project Path="Main/Main.csproj" />
+</Solution>

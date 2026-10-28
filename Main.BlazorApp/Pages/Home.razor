@@ -1,0 +1,126 @@
+﻿@page "/"
+@using Main.BlazorApp.Models
+@using Main.BlazorApp.Services
+@inject ProductService ProductService
+@inject BaseInfoService BaseInfoService
+
+@{
+    var baseInfo = BaseInfoService.Get();
+}
+
+<PageTitle>آوید | کاتالوگ محصولات</PageTitle>
+
+<div class="catalog-site" dir="rtl">
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">مجموعه محصولات آوید</span>
+
+            <h1>@baseInfo.Title</h1>
+
+            <p>
+                @baseInfo.Description
+            </p>
+
+            <a href="#products" class="primary-button">
+                مشاهده کاتالوگ
+                <span>←</span>
+            </a>
+        </div>
+
+        <div class="hero-image">
+            <img src="@baseInfo.HeaderImageUrl"
+                 alt="@baseInfo.Title" />
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section" id="categories">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">دسته‌بندی‌ها</span>
+                <h2>دسته‌بندی محصولات</h2>
+            </div>
+
+            <p>محصول موردنظر خود را سریع‌تر پیدا کنید.</p>
+        </div>
+
+        <div class="category-grid">
+            @foreach (var category in baseInfo.Categories)
+            {
+                <a href="@($"/categories/{category.Code}")"
+                   class="category-card"
+                   @key="category.Code">
+
+                    <span class="category-number">
+                        @category.Code
+                    </span>
+
+                    <h3>@category.Title</h3>
+
+                    <span class="category-arrow">←</span>
+                </a>
+            }
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section products-section" id="products">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">پیشنهاد ما</span>
+                <h2>محصولات منتخب</h2>
+            </div>
+            <a href="#products" class="text-link">مشاهده همه ←</a>
+        </div>
+
+        <div class="product-grid">
+            @foreach (var product in ProductService.GetAll())
+            {
+                <article class="product-card" @key="product.Id">
+
+                    <div class="product-image">
+                        <img src="@product.ImageUrl"
+                             alt="@product.Name" />
+
+                        <span class="product-tag">
+                            @product.Category
+                        </span>
+                    </div>
+
+                    <div class="product-info">
+                        <span class="product-category">
+                            @product.Category
+                        </span>
+
+                        <h3>@product.Name</h3>
+
+                        <p>@product.ShortDescription</p>
+
+                        <a href="@($"/products/{product.Id}")"
+                           class="product-link">
+                            جزئیات محصول
+                            <span>←</span>
+                        </a>
+                    </div>
+
+                </article>
+            }
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+        <div>
+            <span class="eyebrow">درباره آوید</span>
+            <h2>کیفیت، در جزئیات معنا پیدا می‌کند.</h2>
+        </div>
+        <p>
+            ما تلاش می‌کنیم مجموعه‌ای از محصولات کاربردی و باکیفیت
+            را در قالب تجربه‌ای ساده و قابل اعتماد به شما معرفی کنیم.
+        </p>
+    </section>
+
+
+</div>

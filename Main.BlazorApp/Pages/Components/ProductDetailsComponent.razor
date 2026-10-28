@@ -1,0 +1,85 @@
+﻿@page "/products/{Id:int}"
+@using Main.BlazorApp.Models
+@using Main.BlazorApp.Services
+@inject ProductService ProductService
+
+<PageTitle>جزئیات محصول</PageTitle>
+
+<div class="catalog-site" dir="rtl">
+
+    <div class="product-details-container">
+
+        <a href="/" class="back-link">
+            → بازگشت به محصولات
+        </a>
+
+        @{
+            var product = ProductService.GetById(Id);
+        }
+
+        @if (product is null)
+        {
+            <div class="product-not-found">
+                <h2>محصول پیدا نشد!</h2>
+                <p>محصول موردنظر وجود ندارد یا حذف شده است.</p>
+                <a href="/" class="primary-button">
+                    بازگشت به صفحه اصلی
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="product-details">
+
+                <div class="details-image">
+                    <img src="@product.ImageUrl"
+                         alt="@product.Name" />
+                </div>
+
+                <div class="details-content">
+
+                    <span class="eyebrow">
+                        @product.Category
+                    </span>
+
+                    <h1>@product.Name</h1>
+
+                    <p class="details-short-description">
+                        @product.ShortDescription
+                    </p>
+
+                    <div class="details-divider"></div>
+
+                    <h3>معرفی محصول</h3>
+
+                    <p class="details-description">
+                        @product.Description
+                    </p>
+
+                    @if (!string.IsNullOrWhiteSpace(product.Features))
+                    {
+                        <h3>ویژگی‌های محصول</h3>
+
+                        <p class="details-features">
+                            @product.Features
+                        </p>
+                    }
+
+                    <a href="/#products" class="primary-button">
+                        مشاهده سایر محصولات
+                    </a>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}
+

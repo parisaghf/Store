@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+
+<div class="catalog-site" dir="rtl">
+
+    <!-- Header مشترک -->
+    <header class="site-header">
+        <a href="/" class="brand">آوید<span>.</span></a>
+
+        <nav class="main-nav">
+            <a href="/">صفحه اصلی</a>
+            <a href="/#categories">دسته‌بندی‌ها</a>
+            <a href="/#products">محصولات</a>
+            <a href="/#about">درباره ما</a>
+            <a href="/#contact">تماس با ما</a>
+        </nav>
+
+        <a href="/#products" class="header-button">
+            مشاهده محصولات
+        </a>
+    </header>
+
+    <!-- محتوای صفحه جاری -->
+    <main>
+        @Body
+    </main>
+
+    <!-- Footer مشترک -->
+    <footer class="site-footer" id="contact">
+        <a href="/" class="brand">آوید<span>.</span></a>
+
+        <p>
+            برای دریافت اطلاعات بیشتر درباره محصولات با ما تماس بگیرید.
+        </p>
+
+        <a href="mailto:info@example.com" class="footer-email">
+            info@example.com
+        </a>
+
+        <div class="footer-bottom">
+            <span>© تمامی حقوق محفوظ است.</span>
+            <a href="#top">بازگشت به بالا ↑</a>
+        </div>
+    </footer>
+
+</div>
